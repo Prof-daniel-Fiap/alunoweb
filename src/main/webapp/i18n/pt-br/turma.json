@@ -1,0 +1,28 @@
+{
+  "alunowebApp": {
+    "turma": {
+      "home": {
+        "title": "Turmas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Turma",
+        "createOrEditLabel": "Criar ou editar Turma",
+        "notFound": "Nenhum Turma encontrado"
+      },
+      "created": "Um novo Turma foi criado com o identificador {{ param }}",
+      "updated": "Um Turma foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Turma foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Turma {{ id }}?"
+      },
+      "detail": {
+        "title": "Turma"
+      },
+      "id": "ID",
+      "nomeTurma": "Nome Turma",
+      "dataCriaca": "Data Criaca",
+      "observacoes": "Observacoes",
+      "curso": "Curso",
+      "aluno": "Aluno"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="turma">
+      <h2 data-cy="turmaDetailsHeading"><span jhiTranslate="alunowebApp.turma.detail.title">Turma</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ turma.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="alunowebApp.turma.nomeTurma">Nome Turma</span></dt>
+        <dd>
+          <span>{{ turma.nomeTurma }}</span>
+        </dd>
+        <dt><span jhiTranslate="alunowebApp.turma.dataCriaca">Data Criaca</span></dt>
+        <dd>
+          <span>{{ turma.dataCriaca | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="alunowebApp.turma.observacoes">Observacoes</span></dt>
+        <dd>
+          <span>{{ turma.observacoes }}</span>
+        </dd>
+        <dt><span jhiTranslate="alunowebApp.turma.curso">Curso</span></dt>
+        <dd>
+          <div *ngIf="turma.curso">
+            <a [routerLink]="['/curso', turma.curso?.id, 'view']">{{ turma.curso?.nomeCurso }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/turma', turma.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

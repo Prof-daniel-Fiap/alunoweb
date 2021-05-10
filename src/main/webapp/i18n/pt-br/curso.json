@@ -1,0 +1,27 @@
+{
+  "alunowebApp": {
+    "curso": {
+      "home": {
+        "title": "Cursos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Curso",
+        "createOrEditLabel": "Criar ou editar Curso",
+        "notFound": "Nenhum Curso encontrado"
+      },
+      "created": "Um novo Curso foi criado com o identificador {{ param }}",
+      "updated": "Um Curso foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Curso foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Curso {{ id }}?"
+      },
+      "detail": {
+        "title": "Curso"
+      },
+      "id": "ID",
+      "nomeCurso": "Nome Curso",
+      "descricaoCurso": "Descricao Curso",
+      "dataCriacao": "Data Criacao",
+      "aluno": "Aluno"
+    }
+  }
+}

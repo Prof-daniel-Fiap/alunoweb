@@ -48,6 +48,13 @@ public class CacheConfiguration {
             createCache(cm, br.com.fiap.domain.User.class.getName());
             createCache(cm, br.com.fiap.domain.Authority.class.getName());
             createCache(cm, br.com.fiap.domain.User.class.getName() + ".authorities");
+            createCache(cm, br.com.fiap.domain.Aluno.class.getName());
+            createCache(cm, br.com.fiap.domain.Aluno.class.getName() + ".cursos");
+            createCache(cm, br.com.fiap.domain.Aluno.class.getName() + ".turmas");
+            createCache(cm, br.com.fiap.domain.Curso.class.getName());
+            createCache(cm, br.com.fiap.domain.Curso.class.getName() + ".alunos");
+            createCache(cm, br.com.fiap.domain.Turma.class.getName());
+            createCache(cm, br.com.fiap.domain.Turma.class.getName() + ".alunos");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,61 @@
+{
+  "name": "Aluno",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "foto",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "StatusMatricula",
+      "fieldValues": "ATIVO,SUSPENSO,CANCELADO,PREATIVO,ALUMNI"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "curso",
+      "otherEntityRelationshipName": "aluno",
+      "relationshipName": "curso",
+      "otherEntityField": "nomeCurso",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "turma",
+      "otherEntityRelationshipName": "aluno",
+      "relationshipName": "turma",
+      "otherEntityField": "nomeTurma",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "aluno",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210510225212"
+}

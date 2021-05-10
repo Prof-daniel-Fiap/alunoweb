@@ -1,0 +1,39 @@
+{
+  "name": "Curso",
+  "fields": [
+    {
+      "fieldName": "nomeCurso",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricaoCurso",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "dataCriacao",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "aluno",
+      "otherEntityRelationshipName": "curso",
+      "relationshipName": "aluno",
+      "otherEntityField": "nome",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "curso",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210510225213"
+}

@@ -1,0 +1,150 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-aluno-heading" data-cy="AlunoCreateUpdateHeading" jhiTranslate="alunowebApp.aluno.home.createOrEditLabel">
+        Create or edit a Aluno
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="alunowebApp.aluno.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nome')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="alunowebApp.aluno.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="alunowebApp.aluno.foto" for="field_foto">Foto</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('fotoContentType')!.value + ';base64,' + editForm.get('foto')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('foto')!.value"
+              alt="aluno image"
+            />
+            <div *ngIf="editForm.get('foto')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left">{{ editForm.get('fotoContentType')!.value }}, {{ byteSize(editForm.get('foto')!.value) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('foto', 'fotoContentType', 'file_foto')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_foto"
+              data-cy="foto"
+              (change)="setFileData($event, 'foto', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="foto" id="field_foto" data-cy="foto" formControlName="foto" />
+          <input type="hidden" class="form-control" name="fotoContentType" id="field_fotoContentType" formControlName="fotoContentType" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="alunowebApp.aluno.dataNascimento" for="field_dataNascimento"
+            >Data Nascimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataNascimento"
+              data-cy="dataNascimento"
+              type="text"
+              class="form-control"
+              name="dataNascimento"
+              ngbDatepicker
+              #dataNascimentoDp="ngbDatepicker"
+              formControlName="dataNascimento"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dataNascimentoDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="alunowebApp.aluno.telefone" for="field_telefone">Telefone</label>
+          <input type="text" class="form-control" name="telefone" id="field_telefone" data-cy="telefone" formControlName="telefone" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="alunowebApp.aluno.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'alunowebApp.StatusMatricula.null' | translate }}</option>
+            <option value="ATIVO">{{ 'alunowebApp.StatusMatricula.ATIVO' | translate }}</option>
+            <option value="SUSPENSO">{{ 'alunowebApp.StatusMatricula.SUSPENSO' | translate }}</option>
+            <option value="CANCELADO">{{ 'alunowebApp.StatusMatricula.CANCELADO' | translate }}</option>
+            <option value="PREATIVO">{{ 'alunowebApp.StatusMatricula.PREATIVO' | translate }}</option>
+            <option value="ALUMNI">{{ 'alunowebApp.StatusMatricula.ALUMNI' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="alunowebApp.aluno.curso" for="field_cursos">Curso</label>
+          <select class="form-control" id="field_cursos" data-cy="curso" multiple name="cursos" formControlName="cursos">
+            <option
+              [ngValue]="getSelectedCurso(cursoOption, editForm.get('cursos')!.value)"
+              *ngFor="let cursoOption of cursosSharedCollection; trackBy: trackCursoById"
+            >
+              {{ cursoOption.nomeCurso }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="alunowebApp.aluno.turma" for="field_turmas">Turma</label>
+          <select class="form-control" id="field_turmas" data-cy="turma" multiple name="turmas" formControlName="turmas">
+            <option
+              [ngValue]="getSelectedTurma(turmaOption, editForm.get('turmas')!.value)"
+              *ngFor="let turmaOption of turmasSharedCollection; trackBy: trackTurmaById"
+            >
+              {{ turmaOption.nomeTurma }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

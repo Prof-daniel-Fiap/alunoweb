@@ -19,13 +19,13 @@ entity Curso {
 
 entity Turma{
 	nomeTurma String,
-	dataCriaca LocaDate,
+	dataCriaca LocalDate,
     observacoes TextBlob
 }
 
 relationship ManyToMany {
 	Aluno{curso(nomeCurso)} to Curso{aluno(nome)}
-    Aluno{turma(nome)} to Turma{aluno(nome)}
+    Aluno{turma(nomeTurma)} to Turma{aluno(nome)}
 }
 
 relationship ManyToOne {

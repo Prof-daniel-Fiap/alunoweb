@@ -41,6 +41,8 @@
     "packageFolder": "br/com/fiap",
     "jwtSecretKey": "ODJhMWRkYzAyNGViMmU1MTJkZWQ5NGQ3NmU5MzgzN2U5OTE1NzMwMDlhZmM5NWJhZmQ1MTE2YjU4NzFlNTkyYjdmNTczNTUwZDQ1MjhlOWVjOWFkZjVlY2U2MjU2YmQ1OGFmZWIwZDc0M2I2MWU2ZDA4OGEwNjRlNjg5ZTNkYzA=",
     "clientPackageManager": "npm",
-    "languages": ["pt-br"]
+    "languages": ["pt-br"],
+    "entities": ["Aluno", "Curso", "Turma"],
+    "lastLiquibaseTimestamp": 1620687134000
   }
 }

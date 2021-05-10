@@ -1,0 +1,12 @@
+{
+  "alunowebApp": {
+    "StatusMatricula": {
+      "null": "",
+      "ATIVO": "ATIVO",
+      "SUSPENSO": "SUSPENSO",
+      "CANCELADO": "CANCELADO",
+      "PREATIVO": "PREATIVO",
+      "ALUMNI": "ALUMNI"
+    }
+  }
+}
